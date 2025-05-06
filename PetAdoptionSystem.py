@@ -90,4 +90,39 @@ def generate_id(pet_dict,length=6):
     id= ''.join(random.choice('0123456789') for _ in range(length))
     if id not in pet_dict:
       return id
+
+def menu(pet_dict):
+    while True:
+      print("\nOptions:\n1.View available pets\n2.Adopt a pet\n3.Add a pet\n4.View Pet preferences\n5.Exit\n")
+      try:
+        num = int(input("Choose an option (1-5): "))
+      except ValueError:
+        print("Please enter a valid number!")
+        continue
+
+
+      if num == 1:
+        if not pet_dict:
+          print("There are no available pets!!")
+        else:
+          for id,obj in pet_dict.items():
+            print(f"Pet id : {id}")
+            obj.display_info()
+            print()
+
+      elif num == 2:
+        adopt_pet(pet_dict)
+
+      elif num==3:
+        add_pet(pet_dict)
+
+      elif num==4:
+        for p,pref in pet_pref.items():
+          print(f"{p} has {pref} care preferences")
+
+      elif num==5:
+        exit()
+
+      else:
+        print("Invalid choice!")
 menu(pet_dict)
